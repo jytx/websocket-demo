@@ -1,0 +1,31 @@
+<section>
+  大家好!我是:{{currentUser}}
+</section>
+<section *ngFor="let msg of messages">
+  <section>{{msg}}</section>
+</section>
+<section>
+  当前登录用户:{{users}}
+</section>
+<section>
+  <label>
+    <select name="type" [(ngModel)]="type">
+      <option value="all">发送给所有人</option>
+      <option value="single">发送给个人</option>
+    </select>
+  </label>
+</section>
+<section>
+  <label *ngIf="type === 'single'">
+    <select name="user" [(ngModel)]="sendToUser">
+      <option *ngFor="let person of users" [value]="person">{{person}}</option>
+    </select>
+  </label>
+</section>
+<p *ngIf="error">{{error | json}}</p>
+<p *ngIf="completed">completed!</p>
+<label>
+  <input type="text" [(ngModel)]="message">
+</label>
+<button (click)="send()">发送</button>
+
